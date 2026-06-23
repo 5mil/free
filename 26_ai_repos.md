@@ -1,0 +1,21 @@
+# Free Open Source AI Repositories
+- [Ollama](https://github.com/ollama/ollama) — run LLMs locally
+- [LM Studio](https://github.com/lmstudio-ai) — desktop LLM runner
+- [Hugging Face Transformers](https://github.com/huggingface/transformers) — state-of-the-art ML models
+- [LangChain](https://github.com/langchain-ai/langchain) — LLM application framework
+- [LlamaIndex](https://github.com/run-llama/llama_index) — data framework for LLMs
+- [Llama.cpp](https://github.com/ggerganov/llama.cpp) — LLM inference in C++
+- [Open WebUI](https://github.com/open-webui/open-webui) — self-hosted ChatGPT-style UI
+- [AnythingLLM](https://github.com/Mintplex-Labs/anything-llm) — all-in-one AI app
+- [LocalAI](https://github.com/mudler/LocalAI) — OpenAI-compatible local API
+- [GPT4All](https://github.com/nomic-ai/gpt4all) — run LLMs on consumer hardware
+- [CrewAI](https://github.com/crewAIInc/crewAI) — multi-agent AI framework
+- [AutoGen](https://github.com/microsoft/autogen) — Microsoft multi-agent framework
+- [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) — image generation
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) — node-based image/video generation
+- [Whisper](https://github.com/openai/whisper) — speech recognition by OpenAI
+- [Bark](https://github.com/suno-ai/bark) — text-to-audio generation
+- [Haystack](https://github.com/deepset-ai/haystack) — NLP/RAG pipelines
+- [Flowise](https://github.com/FlowiseAI/Flowise) — low-code LLM flow builder
+- [Dify](https://github.com/langgenius/dify) — LLM app development platform
+- [n8n](https://github.com/n8n-io/n8n) — workflow automation with AI nodes
