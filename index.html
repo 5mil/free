@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motus — Free Compute Resources</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --heading: #f0f6fc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    header h1 { color: var(--heading); font-size: 1.6rem; letter-spacing: 0.05em; }
+    header span { color: var(--muted); font-size: 0.95rem; }
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 2rem;
+      overflow-x: auto;
+    }
+    nav ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    nav ul li a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    nav ul li a:hover { text-decoration: underline; }
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card h2 {
+      color: var(--heading);
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .src-link {
+      color: var(--accent);
+      font-size: 0.82rem;
+      text-decoration: none;
+    }
+    .src-link:hover { text-decoration: underline; }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Motus</h1>
+    <span>Free Compute Resources — 25 Categories</span>
+  </header>
+  <nav>
+    <ul>
+        <li><a href="#cloud">Cloud</a></li>
+        <li><a href="#local-hardware">Local Hardware</a></li>
+        <li><a href="#open-source">Open Source</a></li>
+        <li><a href="#dev-tools">Dev Tools</a></li>
+        <li><a href="#ai-and-ml">AI and ML</a></li>
+        <li><a href="#data-storage">Data Storage</a></li>
+        <li><a href="#networking">Networking</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#monitoring">Monitoring</a></li>
+        <li><a href="#web-hosting">Web Hosting</a></li>
+        <li><a href="#databases">Databases</a></li>
+        <li><a href="#messaging">Messaging</a></li>
+        <li><a href="#collaboration">Collaboration</a></li>
+        <li><a href="#productivity">Productivity</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#legal-and-policy">Legal and Policy</a></li>
+        <li><a href="#crypto-and-web3">Crypto and Web3</a></li>
+        <li><a href="#game-development">Game Development</a></li>
+        <li><a href="#mobile">Mobile</a></li>
+        <li><a href="#command-line">Command Line</a></li>
+        <li><a href="#ai-agents">AI Agents</a></li>
+        <li><a href="#infrastructure">Infrastructure</a></li>
+        <li><a href="#jobs-and-communities">Jobs and Communities</a></li>
+        <li><a href="#reference">Reference</a></li>
+    </ul>
+  </nav>
+  <main>
+      <div class="card" id="cloud">
+        <h2>Cloud</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/01_cloud.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="local-hardware">
+        <h2>Local Hardware</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/02_local_hardware.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="open-source">
+        <h2>Open Source</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/03_open_source.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="dev-tools">
+        <h2>Dev Tools</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/04_dev_tools.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="ai-and-ml">
+        <h2>AI and ML</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/05_ai_ml.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="data-storage">
+        <h2>Data Storage</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/06_data_storage.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="networking">
+        <h2>Networking</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/07_networking.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="security">
+        <h2>Security</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/08_security.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="monitoring">
+        <h2>Monitoring</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/09_monitoring.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="web-hosting">
+        <h2>Web Hosting</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/10_web_hosting.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="databases">
+        <h2>Databases</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/11_databases.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="messaging">
+        <h2>Messaging</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/12_messaging.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="collaboration">
+        <h2>Collaboration</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/13_collaboration.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="productivity">
+        <h2>Productivity</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/14_productivity.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="media">
+        <h2>Media</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/15_media.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="education">
+        <h2>Education</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/16_education.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="legal-and-policy">
+        <h2>Legal and Policy</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/17_legal_policy.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="crypto-and-web3">
+        <h2>Crypto and Web3</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/18_crypto_web3.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="game-development">
+        <h2>Game Development</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/19_game_dev.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="mobile">
+        <h2>Mobile</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/20_mobile.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="command-line">
+        <h2>Command Line</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/21_cli.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="ai-agents">
+        <h2>AI Agents</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/22_ai_agents.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="infrastructure">
+        <h2>Infrastructure</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/23_infra.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="jobs-and-communities">
+        <h2>Jobs and Communities</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/24_jobs.md" target="_blank">View source on GitHub →</a>
+      </div>
+      <div class="card" id="reference">
+        <h2>Reference</h2>
+        <a class="src-link" href="https://github.com/5mil/free/blob/main/25_reference.md" target="_blank">View source on GitHub →</a>
+      </div>
+  </main>
+  <footer>
+    Built by <a href="https://github.com/5mil" target="_blank">5mil</a> ·
+    <a href="https://github.com/5mil/free" target="_blank">View on GitHub</a>
+  </footer>
+</body>
+</html>
