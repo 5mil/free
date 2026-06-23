@@ -1,34 +1,12 @@
-# Motus — Free Compute Resource Site
+# Free Computing Resources
 
-A curated public directory of free and low-cost computing resources, organized by category.
+Curated from multiple sources including ripienaar/free-for-dev and others.
 
-## Categories
-- Cloud
-- Local Hardware
-- Open Source
-- Dev Tools
-- AI and ML
-- Data Storage
-- Networking
-- Security
-- Monitoring
-- Web Hosting
-- Databases
-- Messaging
-- Collaboration
-- Productivity
-- Media
-- Education
-- Legal and Policy
-- Crypto and Web3
-- Game Development
-- Mobile
-- Command Line
-- AI Agents
-- Infrastructure
-- Jobs and Communities
-- Reference
+## Major Sections
 
-## Goal
-Provide a clean, browsable, markdown-based resource hub that can be rendered as a static site.
-Focus on free tiers, open source tools, trials, credits, sandboxes, and useful references.
+### Cloud Providers
+- AWS Free Tier
+- Google Cloud Free Tier
+- ... (integrated from source)
+
+Full integration in progress. See categories below.
