@@ -4,229 +4,346 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Motus — Free Compute Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0d1117;
       --surface: #161b22;
+      --surface2: #1c2128;
       --border: #30363d;
       --accent: #58a6ff;
+      --accent2: #3fb950;
       --text: #c9d1d9;
       --muted: #8b949e;
       --heading: #f0f6fc;
+      --tag-bg: #1f2937;
+      --radius: 10px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+      line-height: 1.6;
     }
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      padding: 1.5rem 2rem 1rem;
     }
-    header h1 { color: var(--heading); font-size: 1.6rem; letter-spacing: 0.05em; }
-    header span { color: var(--muted); font-size: 0.95rem; }
+    .header-top {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      color: var(--heading);
+      letter-spacing: 0.04em;
+    }
+    header h1 span { color: var(--accent); }
+    header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .search-wrap {
+      margin-top: 0.75rem;
+      position: relative;
+      max-width: 480px;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+    #search {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.55rem 0.75rem 0.55rem 2.25rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #search:focus { border-color: var(--accent); }
+    #search::placeholder { color: var(--muted); }
+    #no-results {
+      display: none;
+      color: var(--muted);
+      text-align: center;
+      padding: 3rem;
+      font-size: 0.95rem;
+    }
     nav {
-      background: var(--surface);
+      background: var(--surface2);
       border-bottom: 1px solid var(--border);
-      padding: 0.75rem 2rem;
+      padding: 0.6rem 2rem;
       overflow-x: auto;
     }
     nav ul {
       display: flex;
-      gap: 1rem;
+      gap: 0.6rem;
       list-style: none;
       flex-wrap: wrap;
     }
     nav ul li a {
-      color: var(--accent);
+      color: var(--muted);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      border: 1px solid transparent;
+      transition: all 0.15s;
       white-space: nowrap;
     }
-    nav ul li a:hover { text-decoration: underline; }
+    nav ul li a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(88,166,255,0.07);
+    }
     main {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1.5rem;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1rem;
     }
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
-      transition: border-color 0.2s;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
-    .card:hover { border-color: var(--accent); }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .card h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--heading);
-      font-size: 1rem;
-      margin-bottom: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
     }
     .src-link {
-      color: var(--accent);
-      font-size: 0.82rem;
+      color: var(--muted);
+      font-size: 1rem;
       text-decoration: none;
+      line-height: 1;
+      transition: color 0.15s;
     }
-    .src-link:hover { text-decoration: underline; }
+    .src-link:hover { color: var(--accent); }
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .card ul li {
+      font-size: 0.83rem;
+      color: var(--text);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      background: var(--tag-bg);
+      border-left: 2px solid var(--accent2);
+    }
     footer {
       text-align: center;
       padding: 2rem;
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       border-top: 1px solid var(--border);
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
     footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .card.hidden { display: none; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Motus</h1>
-    <span>Free Compute Resources — 25 Categories</span>
+    <div class="header-top">
+      <h1><span>motus</span></h1>
+      <p>25 categories of free compute resources</p>
+    </div>
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input id="search" type="text" placeholder="Search categories and resources..." autocomplete="off" />
+    </div>
   </header>
   <nav>
     <ul>
-        <li><a href="#cloud">Cloud</a></li>
-        <li><a href="#local-hardware">Local Hardware</a></li>
-        <li><a href="#open-source">Open Source</a></li>
-        <li><a href="#dev-tools">Dev Tools</a></li>
-        <li><a href="#ai-and-ml">AI and ML</a></li>
-        <li><a href="#data-storage">Data Storage</a></li>
-        <li><a href="#networking">Networking</a></li>
-        <li><a href="#security">Security</a></li>
-        <li><a href="#monitoring">Monitoring</a></li>
-        <li><a href="#web-hosting">Web Hosting</a></li>
-        <li><a href="#databases">Databases</a></li>
-        <li><a href="#messaging">Messaging</a></li>
-        <li><a href="#collaboration">Collaboration</a></li>
-        <li><a href="#productivity">Productivity</a></li>
-        <li><a href="#media">Media</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#legal-and-policy">Legal and Policy</a></li>
-        <li><a href="#crypto-and-web3">Crypto and Web3</a></li>
-        <li><a href="#game-development">Game Development</a></li>
-        <li><a href="#mobile">Mobile</a></li>
-        <li><a href="#command-line">Command Line</a></li>
-        <li><a href="#ai-agents">AI Agents</a></li>
-        <li><a href="#infrastructure">Infrastructure</a></li>
-        <li><a href="#jobs-and-communities">Jobs and Communities</a></li>
-        <li><a href="#reference">Reference</a></li>
+      <li><a href="#cloud">Cloud</a></li>
+      <li><a href="#local-hardware">Local Hardware</a></li>
+      <li><a href="#open-source">Open Source</a></li>
+      <li><a href="#dev-tools">Dev Tools</a></li>
+      <li><a href="#ai-and-ml">AI and ML</a></li>
+      <li><a href="#data-storage">Data Storage</a></li>
+      <li><a href="#networking">Networking</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#monitoring">Monitoring</a></li>
+      <li><a href="#web-hosting">Web Hosting</a></li>
+      <li><a href="#databases">Databases</a></li>
+      <li><a href="#messaging">Messaging</a></li>
+      <li><a href="#collaboration">Collaboration</a></li>
+      <li><a href="#productivity">Productivity</a></li>
+      <li><a href="#media">Media</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#legal-and-policy">Legal and Policy</a></li>
+      <li><a href="#crypto-and-web3">Crypto and Web3</a></li>
+      <li><a href="#game-development">Game Development</a></li>
+      <li><a href="#mobile">Mobile</a></li>
+      <li><a href="#command-line">Command Line</a></li>
+      <li><a href="#ai-agents">AI Agents</a></li>
+      <li><a href="#infrastructure">Infrastructure</a></li>
+      <li><a href="#jobs-and-communities">Jobs and Communities</a></li>
+      <li><a href="#reference">Reference</a></li>
     </ul>
   </nav>
-  <main>
-      <div class="card" id="cloud">
-        <h2>Cloud</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/01_cloud.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="local-hardware">
-        <h2>Local Hardware</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/02_local_hardware.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="open-source">
-        <h2>Open Source</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/03_open_source.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="dev-tools">
-        <h2>Dev Tools</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/04_dev_tools.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="ai-and-ml">
-        <h2>AI and ML</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/05_ai_ml.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="data-storage">
-        <h2>Data Storage</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/06_data_storage.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="networking">
-        <h2>Networking</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/07_networking.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="security">
-        <h2>Security</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/08_security.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="monitoring">
-        <h2>Monitoring</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/09_monitoring.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="web-hosting">
-        <h2>Web Hosting</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/10_web_hosting.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="databases">
-        <h2>Databases</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/11_databases.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="messaging">
-        <h2>Messaging</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/12_messaging.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="collaboration">
-        <h2>Collaboration</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/13_collaboration.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="productivity">
-        <h2>Productivity</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/14_productivity.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="media">
-        <h2>Media</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/15_media.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="education">
-        <h2>Education</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/16_education.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="legal-and-policy">
-        <h2>Legal and Policy</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/17_legal_policy.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="crypto-and-web3">
-        <h2>Crypto and Web3</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/18_crypto_web3.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="game-development">
-        <h2>Game Development</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/19_game_dev.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="mobile">
-        <h2>Mobile</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/20_mobile.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="command-line">
-        <h2>Command Line</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/21_cli.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="ai-agents">
-        <h2>AI Agents</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/22_ai_agents.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="infrastructure">
-        <h2>Infrastructure</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/23_infra.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="jobs-and-communities">
-        <h2>Jobs and Communities</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/24_jobs.md" target="_blank">View source on GitHub →</a>
-      </div>
-      <div class="card" id="reference">
-        <h2>Reference</h2>
-        <a class="src-link" href="https://github.com/5mil/free/blob/main/25_reference.md" target="_blank">View source on GitHub →</a>
-      </div>
+  <main id="grid">
+    <div class="card" id="cloud" data-name="cloud">
+      <div class="card-header"><h2>Cloud</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/01_cloud.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>AWS Free Tier</li><li>Google Cloud Free Program</li><li>Microsoft Azure Free Account</li><li>Oracle Cloud Always Free</li><li>Fly.io free allowances</li><li>Render free web services</li></ul>
+    </div>
+    <div class="card" id="local-hardware" data-name="local hardware">
+      <div class="card-header"><h2>Local Hardware</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/02_local_hardware.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Raspberry Pi</li><li>Intel NUC</li><li>Mini PCs</li><li>NAS builds</li><li>Used GPUs</li><li>Desktop repurposing</li></ul>
+    </div>
+    <div class="card" id="open-source" data-name="open source">
+      <div class="card-header"><h2>Open Source</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/03_open_source.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>GitHub</li><li>GitLab</li><li>SourceForge</li><li>Codeberg</li><li>Gitea</li><li>Apache Software Foundation projects</li></ul>
+    </div>
+    <div class="card" id="dev-tools" data-name="dev tools">
+      <div class="card-header"><h2>Dev Tools</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/04_dev_tools.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>VS Code</li><li>Neovim</li><li>GitHub Desktop</li><li>Postman</li><li>Insomnia</li><li>Docker Desktop</li></ul>
+    </div>
+    <div class="card" id="ai-and-ml" data-name="ai and ml machine learning">
+      <div class="card-header"><h2>AI and ML</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/05_ai_ml.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Kaggle Notebooks</li><li>Google Colab</li><li>Hugging Face Spaces</li><li>Ollama</li><li>OpenRouter free models</li><li>LM Studio</li></ul>
+    </div>
+    <div class="card" id="data-storage" data-name="data storage">
+      <div class="card-header"><h2>Data Storage</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/06_data_storage.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Google Drive free tier</li><li>Dropbox Basic</li><li>OneDrive free tier</li><li>Backblaze B2 trial</li><li>Syncthing</li><li>rclone</li></ul>
+    </div>
+    <div class="card" id="networking" data-name="networking">
+      <div class="card-header"><h2>Networking</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/07_networking.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Cloudflare DNS</li><li>Tailscale free plan</li><li>ZeroTier free plan</li><li>ngrok free tier</li><li>WireGuard</li><li>DuckDNS</li></ul>
+    </div>
+    <div class="card" id="security" data-name="security">
+      <div class="card-header"><h2>Security</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/08_security.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Bitwarden</li><li>1Password trial</li><li>Authy</li><li>Aegis</li><li>Have I Been Pwned</li><li>VirusTotal</li></ul>
+    </div>
+    <div class="card" id="monitoring" data-name="monitoring">
+      <div class="card-header"><h2>Monitoring</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/09_monitoring.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Uptime Kuma</li><li>Grafana Cloud free</li><li>Prometheus</li><li>Netdata</li><li>Healthchecks.io</li><li>Sentry free tier</li></ul>
+    </div>
+    <div class="card" id="web-hosting" data-name="web hosting">
+      <div class="card-header"><h2>Web Hosting</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/10_web_hosting.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>GitHub Pages</li><li>Netlify</li><li>Vercel</li><li>Cloudflare Pages</li><li>Surge</li><li>Neocities</li></ul>
+    </div>
+    <div class="card" id="databases" data-name="databases sql nosql">
+      <div class="card-header"><h2>Databases</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/11_databases.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Supabase</li><li>Neon</li><li>Firebase</li><li>MongoDB Atlas free tier</li><li>PlanetScale</li><li>Redis Cloud free</li></ul>
+    </div>
+    <div class="card" id="messaging" data-name="messaging email sms">
+      <div class="card-header"><h2>Messaging</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/12_messaging.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>SendGrid trial</li><li>Mailgun trial</li><li>Twilio trial</li><li>Telegram bots</li><li>Discord webhooks</li><li>Pushover</li></ul>
+    </div>
+    <div class="card" id="collaboration" data-name="collaboration docs wiki">
+      <div class="card-header"><h2>Collaboration</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/13_collaboration.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Notion</li><li>Google Docs</li><li>Etherpad</li><li>Outline</li><li>Slack free tier</li><li>Discord</li></ul>
+    </div>
+    <div class="card" id="productivity" data-name="productivity notes tasks">
+      <div class="card-header"><h2>Productivity</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/14_productivity.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Obsidian</li><li>Todoist free</li><li>Trello free</li><li>Google Calendar</li><li>Joplin</li><li>Standard Notes</li></ul>
+    </div>
+    <div class="card" id="media" data-name="media audio video image">
+      <div class="card-header"><h2>Media</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/15_media.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Audacity</li><li>FFmpeg</li><li>Kdenlive</li><li>Blender</li><li>Pexels</li><li>Pixabay</li></ul>
+    </div>
+    <div class="card" id="education" data-name="education learning courses">
+      <div class="card-header"><h2>Education</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/16_education.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Khan Academy</li><li>freeCodeCamp</li><li>Coursera audit mode</li><li>edX audit mode</li><li>YouTube tutorials</li><li>MDN Web Docs</li></ul>
+    </div>
+    <div class="card" id="legal-and-policy" data-name="legal policy law open data">
+      <div class="card-header"><h2>Legal and Policy</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/17_legal_policy.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Creative Commons</li><li>Open Source Initiative</li><li>EFF guides</li><li>Public records portals</li><li>Government open data portals</li><li>NYS legislative sites</li></ul>
+    </div>
+    <div class="card" id="crypto-and-web3" data-name="crypto web3 blockchain">
+      <div class="card-header"><h2>Crypto and Web3</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/18_crypto_web3.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Bitcoin Core</li><li>Ethereum testnets</li><li>Solana docs</li><li>RPC providers with free tiers</li><li>Etherscan</li><li>Block explorers</li></ul>
+    </div>
+    <div class="card" id="game-development" data-name="game development engines assets">
+      <div class="card-header"><h2>Game Development</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/19_game_dev.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Godot</li><li>Unity Personal</li><li>Unreal Engine</li><li>itch.io</li><li>Kenney assets</li><li>OpenGameArt</li></ul>
+    </div>
+    <div class="card" id="mobile" data-name="mobile android ios">
+      <div class="card-header"><h2>Mobile</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/20_mobile.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Android Studio</li><li>Xcode</li><li>Genymotion</li><li>Android Emulator</li><li>Expo</li><li>React Native</li></ul>
+    </div>
+    <div class="card" id="command-line" data-name="command line cli terminal shell">
+      <div class="card-header"><h2>Command Line</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/21_cli.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>tmux</li><li>zsh</li><li>bash</li><li>fzf</li><li>ripgrep</li><li>bat</li></ul>
+    </div>
+    <div class="card" id="ai-agents" data-name="ai agents llm workflows automation">
+      <div class="card-header"><h2>AI Agents</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/22_ai_agents.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>LangChain</li><li>LlamaIndex</li><li>CrewAI</li><li>OpenAI function calling docs</li><li>MCP tools</li><li>n8n</li></ul>
+    </div>
+    <div class="card" id="infrastructure" data-name="infrastructure iac containers kubernetes">
+      <div class="card-header"><h2>Infrastructure</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/23_infra.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Terraform</li><li>Pulumi</li><li>Docker</li><li>Kubernetes</li><li>Ansible</li><li>Nomad</li></ul>
+    </div>
+    <div class="card" id="jobs-and-communities" data-name="jobs communities forums discord">
+      <div class="card-header"><h2>Jobs and Communities</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/24_jobs.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>Hacker News</li><li>Reddit r/devops</li><li>Reddit r/selfhosted</li><li>Stack Overflow</li><li>Dev.to</li><li>GitHub Discussions</li></ul>
+    </div>
+    <div class="card" id="reference" data-name="reference docs cheatsheets glossary">
+      <div class="card-header"><h2>Reference</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/25_reference.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul><li>MDN</li><li>Wikipedia</li><li>RFC Editor</li><li>Wikidata</li><li>man pages</li><li>awesome lists</li></ul>
+    </div>
   </main>
+  <p id="no-results">No matching resources found.</p>
   <footer>
-    Built by <a href="https://github.com/5mil" target="_blank">5mil</a> ·
-    <a href="https://github.com/5mil/free" target="_blank">View on GitHub</a>
+    Built by <a href="https://github.com/5mil" target="_blank">5mil</a> &middot;
+    <a href="https://github.com/5mil/free" target="_blank">View on GitHub</a> &middot;
+    <a href="https://github.com/5mil/free/blob/main/PROJECT_SCOPE.md" target="_blank">Project Scope</a>
   </footer>
+  <script>
+    const input = document.getElementById('search');
+    const cards = document.querySelectorAll('.card');
+    const noResults = document.getElementById('no-results');
+    input.addEventListener('input', () => {
+      const q = input.value.toLowerCase().trim();
+      let visible = 0;
+      cards.forEach(card => {
+        const text = card.dataset.name + ' ' + card.innerText.toLowerCase();
+        const show = !q || text.includes(q);
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>
