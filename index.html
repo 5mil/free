@@ -46,10 +46,7 @@
       letter-spacing: 0.04em;
     }
     header h1 span { color: var(--accent); }
-    header p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    header p { color: var(--muted); font-size: 0.9rem; }
     .search-wrap {
       margin-top: 0.75rem;
       position: relative;
@@ -129,15 +126,8 @@
       flex-direction: column;
       gap: 0.75rem;
     }
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; }
     .card h2 {
       font-size: 0.95rem;
       font-weight: 600;
@@ -152,12 +142,7 @@
       transition: color 0.15s;
     }
     .src-link:hover { color: var(--accent); }
-    .card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
+    .card ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
     .card ul li {
       font-size: 0.83rem;
       color: var(--text);
@@ -183,7 +168,7 @@
   <header>
     <div class="header-top">
       <h1><span>motus</span></h1>
-      <p>25 categories of free compute resources</p>
+      <p>26 categories of free compute resources</p>
     </div>
     <div class="search-wrap">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -219,6 +204,7 @@
       <li><a href="#infrastructure">Infrastructure</a></li>
       <li><a href="#jobs-and-communities">Jobs and Communities</a></li>
       <li><a href="#reference">Reference</a></li>
+      <li><a href="#open-source-ai-repos">Open Source AI Repos</a></li>
     </ul>
   </nav>
   <main id="grid">
@@ -321,6 +307,31 @@
     <div class="card" id="reference" data-name="reference docs cheatsheets glossary">
       <div class="card-header"><h2>Reference</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/25_reference.md" target="_blank" title="View source">&#x2197;</a></div>
       <ul><li>MDN</li><li>Wikipedia</li><li>RFC Editor</li><li>Wikidata</li><li>man pages</li><li>awesome lists</li></ul>
+    </div>
+    <div class="card" id="open-source-ai-repos" data-name="open source ai repos llm models repositories">
+      <div class="card-header"><h2>Open Source AI Repos</h2><a class="src-link" href="https://github.com/5mil/free/blob/main/26_ai_repos.md" target="_blank" title="View source">&#x2197;</a></div>
+      <ul>
+        <li>Ollama — run LLMs locally</li>
+        <li>Hugging Face Transformers</li>
+        <li>LangChain</li>
+        <li>LlamaIndex</li>
+        <li>Llama.cpp — LLM inference in C++</li>
+        <li>Open WebUI — self-hosted ChatGPT UI</li>
+        <li>AnythingLLM</li>
+        <li>LocalAI — OpenAI-compatible local API</li>
+        <li>GPT4All</li>
+        <li>CrewAI</li>
+        <li>AutoGen — Microsoft multi-agent</li>
+        <li>Stable Diffusion WebUI</li>
+        <li>ComfyUI — node-based image generation</li>
+        <li>Whisper — speech recognition</li>
+        <li>Bark — text-to-audio</li>
+        <li>Haystack — NLP/RAG pipelines</li>
+        <li>Flowise — low-code LLM builder</li>
+        <li>Dify — LLM app platform</li>
+        <li>n8n — workflow automation</li>
+        <li>LM Studio</li>
+      </ul>
     </div>
   </main>
   <p id="no-results">No matching resources found.</p>
